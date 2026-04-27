@@ -98,7 +98,7 @@ function App() {
                 onClick={handleGenerate}
                 className="w-full py-5 rounded-2xl bg-white text-black font-black tracking-widest text-lg active:scale-95 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.2)]"
               >
-                GENERATE HEROES
+                GENERATE HERO
               </button>
             </motion.div>
           )}
