@@ -101,7 +101,7 @@ function App() {
                 STONEFLESH GAME STUDIO
               </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center">
-                <BrandMark className="w-[clamp(26rem,98vw,52rem)] h-[clamp(10rem,44vw,26rem)]" />
+                <BrandMark className="w-[clamp(12rem,80vw,24rem)] h-[clamp(5rem,22vw,12rem)]" />
                 <h1 className="mt-[30px] text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500">
                   HERO GENERATOR
                 </h1>
