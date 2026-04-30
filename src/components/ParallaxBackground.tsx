@@ -2,14 +2,17 @@ type ParallaxLayer = {
   src: string;
   durationSec: number;
   opacity: number;
-  blurPx?: number;
 };
+
+function toWebp(pngOrAny: string) {
+  return pngOrAny.replace(/\.png$/i, '.webp');
+}
 
 const DEFAULT_LAYERS: ParallaxLayer[] = [
   { src: '/base.png', durationSec: 42, opacity: 0.95 },
-  { src: '/cloud-1.png', durationSec: 26, opacity: 0.55, blurPx: 0.5 },
-  { src: '/cloud-2.png', durationSec: 18, opacity: 0.45, blurPx: 0.8 },
-  { src: '/cloud-3.png', durationSec: 12, opacity: 0.35, blurPx: 1 },
+  { src: '/cloud-1.png', durationSec: 26, opacity: 0.55 },
+  { src: '/cloud-2.png', durationSec: 18, opacity: 0.45 },
+  { src: '/cloud-3.png', durationSec: 12, opacity: 0.35 },
 ];
 
 export default function ParallaxBackground({ layers = DEFAULT_LAYERS }: { layers?: ParallaxLayer[] }) {
@@ -20,10 +23,9 @@ export default function ParallaxBackground({ layers = DEFAULT_LAYERS }: { layers
           key={layer.src}
           className="parallax-layer absolute inset-0"
           style={{
-            backgroundImage: `url(${layer.src})`,
+            backgroundImage: `image-set(url(${toWebp(layer.src)}) type("image/webp"), url(${layer.src}) type("image/png"))`,
             animationDuration: `${layer.durationSec}s`,
             opacity: layer.opacity,
-            filter: layer.blurPx ? `blur(${layer.blurPx}px)` : undefined,
           }}
         />
       ))}
