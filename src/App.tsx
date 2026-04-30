@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Download, Instagram, X } from 'lucide-react';
+import BrandMark from './components/BrandMark';
+import ParallaxBackground from './components/ParallaxBackground';
 
 type AppState = 'idle' | 'generating' | 'result';
 type Rarity = 'BASIC' | 'RARE' | 'MYTHIC' | 'LEGEND' | null;
@@ -74,10 +76,17 @@ function App() {
     setAppState('idle');
   };
 
+  const closeResult = () => {
+    setShowSharePanel(false);
+    setCurrentRarity(null);
+    setAppState('idle');
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans overflow-hidden relative flex justify-center">
       {/* Mobile container to constrain desktop view */}
       <div className="w-full max-w-md h-[100dvh] relative bg-zinc-900 shadow-2xl overflow-hidden flex flex-col">
+        <ParallaxBackground />
         
         {/* IDLE STATE */}
         <AnimatePresence>
@@ -86,11 +95,12 @@ function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 flex flex-col items-center justify-between p-8 bg-gradient-to-b from-zinc-900 to-black"
+              className="absolute inset-0 flex flex-col items-center justify-between p-8 bg-transparent"
             >
               <div className="flex-1 flex flex-col items-center justify-center text-center">
-                <h1 className="text-4xl font-black tracking-tighter mb-2 bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500">
-                  TRASH EATER<br/>HERO GENERATOR
+                <BrandMark className="w-[clamp(26rem,98vw,52rem)] h-[clamp(10rem,44vw,26rem)]" />
+                <h1 className="mt-[30px] text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500">
+                  HERO GENERATOR
                 </h1>
               </div>
               
@@ -128,6 +138,12 @@ function App() {
               className="absolute inset-0 z-20 flex flex-col bg-black"
             >
               <div className="relative flex-1 w-full h-full">
+                <button
+                  onClick={closeResult}
+                  className="absolute top-6 right-6 z-40 p-2 bg-black/70 rounded-full text-white active:scale-95 transition-transform"
+                >
+                  <X size={24} />
+                </button>
                 <img 
                   src={RARITY_IMAGES[currentRarity]} 
                   alt={`${currentRarity} Hero`}

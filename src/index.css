@@ -12,3 +12,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes parallax-move-right {
+  from {
+    background-position: 50% 50%;
+  }
+  to {
+    background-position: calc(50% + 1400px) 50%;
+  }
+}
+
+.parallax-layer {
+  background-repeat: repeat-x;
+  background-position: 50% 50%;
+  background-size: auto 100%;
+  animation-name: parallax-move-right;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: background-position;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
