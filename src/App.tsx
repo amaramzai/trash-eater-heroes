@@ -97,6 +97,9 @@ function App() {
               exit={{ opacity: 0 }}
               className="absolute inset-0 flex flex-col items-center justify-between p-8 bg-transparent"
             >
+              <div className="pt-2 text-[11px] tracking-[0.35em] text-white/95 font-semibold">
+                STONEFLESH GAME STUDIO
+              </div>
               <div className="flex-1 flex flex-col items-center justify-center text-center">
                 <BrandMark className="w-[clamp(26rem,98vw,52rem)] h-[clamp(10rem,44vw,26rem)]" />
                 <h1 className="mt-[30px] text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500">
