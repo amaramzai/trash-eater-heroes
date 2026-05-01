@@ -64,7 +64,7 @@ function App() {
         document.body.removeChild(link);
         window.URL.revokeObjectURL(url);
       } catch (error) {
-        console.error('Gagal mengunduh gambar placeholder karena pembatasan CORS. Fitur unduh otomatis akan berjalan normal saat Anda mengganti URL placeholder dengan gambar milik Anda sendiri.', error);
+        console.error('Failed mengunduh gambar placeholder karena pembatasan CORS. Fitur unduh otomatis akan berjalan normal saat Anda mengganti URL placeholder dengan gambar milik Anda sendiri.', error);
         // Hapus window.open() agar browser tidak berpindah halaman dan tidak menutupi panel Share
       }
     }
