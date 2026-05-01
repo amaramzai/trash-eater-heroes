@@ -8,10 +8,10 @@ type AppState = 'idle' | 'generating' | 'result';
 type Rarity = 'COMMON' | 'RARE' | 'LEGEND' | 'MYTHIC' | null;
 
 const RARITY_IMAGES = {
-  COMMON: '/common.png',
-  RARE: '/rare.png',
-  LEGEND: '/legend.png',
-  MYTHIC: '/mythic.png',
+  COMMON: '/common.webp',
+  RARE: '/rare.webp',
+  LEGEND: '/legend.webp',
+  MYTHIC: '/mythic.webp',
 };
 
 function App() {
@@ -58,7 +58,7 @@ function App() {
         
         const link = document.createElement('a');
         link.href = url;
-        link.download = `trash-eater-hero-${currentRarity.toLowerCase()}.png`;
+        link.download = `trash-eater-hero-${currentRarity.toLowerCase()}.webp`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -107,6 +107,21 @@ function App() {
                 </h1>
               </div>
               
+              <div className="pb-4 flex flex-col items-center gap-2">
+                <div className="text-[11px] tracking-[0.35em] text-white/95 font-semibold">
+                  COLLECT ALL CARDS
+                </div>
+                <div className="text-[11px] tracking-[0.35em] font-semibold">
+                  <span className="text-white">COMMON</span>
+                  <span className="text-white/70"> - </span>
+                  <span className="text-orange-400">RARE</span>
+                  <span className="text-white/70"> - </span>
+                  <span className="text-yellow-300">LEGEND</span>
+                  <span className="text-white/70"> - </span>
+                  <span className="text-red-500">MYTHIC</span>
+                </div>
+              </div>
+
               <button 
                 onClick={handleGenerate}
                 className="w-full py-5 rounded-2xl bg-white text-black font-black tracking-widest text-lg active:scale-95 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.2)]"
