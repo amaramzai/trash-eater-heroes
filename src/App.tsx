@@ -5,13 +5,13 @@ import BrandMark from './components/BrandMark';
 import ParallaxBackground from './components/ParallaxBackground';
 
 type AppState = 'idle' | 'generating' | 'result';
-type Rarity = 'BASIC' | 'RARE' | 'MYTHIC' | 'LEGEND' | null;
+type Rarity = 'COMMON' | 'RARE' | 'LEGEND' | 'MYTHIC' | null;
 
 const RARITY_IMAGES = {
-  BASIC: '/lifebuoy.png',
-  RARE: '/mansuit.png',
-  MYTHIC: '/gilang.png',
-  LEGEND: '/full.png',
+  COMMON: '/common.png',
+  RARE: '/rare.png',
+  LEGEND: '/legend.png',
+  MYTHIC: '/mythic.png',
 };
 
 function App() {
@@ -24,15 +24,15 @@ function App() {
     
     // Determine rarity
     const rand = Math.floor(Math.random() * 100) + 1;
-    let rarity: Rarity = 'BASIC';
-    if (rand <= 55) {
-      rarity = 'BASIC'; // 55%
-    } else if (rand <= 82) {
-      rarity = 'RARE'; // 27%
-    } else if (rand <= 95) {
-      rarity = 'MYTHIC'; // 13%
+    let rarity: Rarity = 'COMMON';
+    if (rand <= 50) {
+      rarity = 'COMMON'; // 50%
+    } else if (rand <= 75) {
+      rarity = 'RARE'; // 25%
+    } else if (rand <= 92) {
+      rarity = 'LEGEND'; // 17%
     } else {
-      rarity = 'LEGEND'; // 5%
+      rarity = 'MYTHIC'; // 8%
     }
 
     // Preload image
