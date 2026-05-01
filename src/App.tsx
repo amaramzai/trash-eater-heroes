@@ -22,20 +22,23 @@ function App() {
   const handleGenerate = () => {
     setAppState('generating');
     
-    // Determine rarity
     const rand = Math.floor(Math.random() * 100) + 1;
+    const isFirstGenerate = localStorage.getItem('heroes_first_generate_done') !== '1';
+    localStorage.setItem('heroes_first_generate_done', '1');
+
     let rarity: Rarity = 'COMMON';
-    if (rand <= 55) {
-      rarity = 'COMMON'; // 55%
+    if (isFirstGenerate) {
+      rarity = rand <= 70 ? 'COMMON' : 'RARE';
+    } else if (rand <= 55) {
+      rarity = 'COMMON';
     } else if (rand <= 82) {
-      rarity = 'RARE'; // 27%
+      rarity = 'RARE';
     } else if (rand <= 95) {
-      rarity = 'LEGEND'; // 13%
+      rarity = 'LEGEND';
     } else {
-      rarity = 'MYTHIC'; // 5%
+      rarity = 'MYTHIC';
     }
 
-    // Preload image
     const img = new Image();
     img.src = RARITY_IMAGES[rarity];
 
