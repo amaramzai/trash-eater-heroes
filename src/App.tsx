@@ -25,14 +25,14 @@ function App() {
     // Determine rarity
     const rand = Math.floor(Math.random() * 100) + 1;
     let rarity: Rarity = 'COMMON';
-    if (rand <= 50) {
-      rarity = 'COMMON'; // 50%
-    } else if (rand <= 75) {
-      rarity = 'RARE'; // 25%
-    } else if (rand <= 92) {
-      rarity = 'LEGEND'; // 17%
+    if (rand <= 55) {
+      rarity = 'COMMON'; // 55%
+    } else if (rand <= 82) {
+      rarity = 'RARE'; // 27%
+    } else if (rand <= 95) {
+      rarity = 'LEGEND'; // 13%
     } else {
-      rarity = 'MYTHIC'; // 8%
+      rarity = 'MYTHIC'; // 5%
     }
 
     // Preload image
@@ -42,7 +42,7 @@ function App() {
     setTimeout(() => {
       setCurrentRarity(rarity);
       setAppState('result');
-    }, 4000);
+    }, 5000);
   };
 
   const handleSave = async () => {
@@ -109,7 +109,7 @@ function App() {
               
               <div className="pb-4 flex flex-col items-center gap-2">
                 <div className="text-[11px] tracking-[0.35em] text-white/95 font-semibold">
-                  COLLECT ALL CARDS
+                  COLLECT ALL HEROES
                 </div>
                 <div className="text-[11px] tracking-[0.35em] font-semibold">
                   <span className="text-white">COMMON</span>
@@ -228,6 +228,7 @@ function App() {
 // Loading Dots Component
 function LoadingDots() {
   const [dots, setDots] = useState('');
+  const [phase, setPhase] = useState<0 | 1 | 2>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -240,12 +241,41 @@ function LoadingDots() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const t1 = window.setTimeout(() => setPhase(1), 2000);
+    const t2 = window.setTimeout(() => setPhase(2), 4000);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col items-center">
-      <div className="text-xl tracking-[0.2em] font-bold text-zinc-300 uppercase flex">
-        <span>ANALYZING YOU</span>
-        <span className="w-8 text-left">{dots}</span>
-      </div>
+    <div className="flex flex-col items-center text-center px-8">
+      {phase === 0 && (
+        <div className="flex flex-col items-center gap-2">
+          <div className="text-[12px] tracking-[0.25em] font-bold text-zinc-300 uppercase flex">
+            <span>ANALYZING YOU</span>
+            <span className="w-8 text-left">{dots}</span>
+          </div>
+          <div className="text-[12px] tracking-[0.25em] font-bold text-zinc-300 uppercase flex">
+            <span>INSPECTING YOUR CURRENT STRENGTH</span>
+            <span className="w-8 text-left">{dots}</span>
+          </div>
+        </div>
+      )}
+      {phase === 1 && (
+        <div className="text-[12px] tracking-[0.25em] font-bold text-zinc-300 uppercase flex">
+          <span>CALCULATING WORLD MATRIX</span>
+          <span className="w-8 text-left">{dots}</span>
+        </div>
+      )}
+      {phase === 2 && (
+        <div className="text-[12px] tracking-[0.25em] font-bold text-zinc-300 uppercase flex">
+          <span>PROCESSING RESULT</span>
+          <span className="w-8 text-left">{dots}</span>
+        </div>
+      )}
     </div>
   );
 }
